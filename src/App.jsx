@@ -1,11 +1,17 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+import Event from "./components/Event/Event";
+import PrivateGallery from "./components/PrivateGallery/PrivateGallery";
+import Admin from "./components/Admin/Admin";
 import "./App.css";
 
 function App() {
   return (
-    <section className="hero">
-      <h1>Álbum de nuestra boda</h1>
-      <p>Comparte tus fotos con nosotros</p>
-    </section>
+    <Routes>
+      <Route path="/:slug" element={<Event />} />
+      <Route path="/admin/:slug" element={<PrivateGallery />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="*" element={<Navigate to="/meli-e-ivan" />} />
+    </Routes>
   );
 }
 
