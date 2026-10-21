@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../../conexion/supabase";
+import imgWedding from "../../assets/wedding2.png";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -28,13 +30,14 @@ function Login() {
   };
 
   return (
-    <main>
+    <main className="login-album-container center">
+      <img src={imgWedding} alt="foto de portada" />
       <h1>Área privada</h1>
 
       <p>Acceso exclusivo para los novios</p>
 
-      <form onSubmit={startSession}>
-        <div>
+      <form onSubmit={startSession} className="form-album-login">
+        <div className="input-container">
           <label>Correo</label>
 
           <input
@@ -45,7 +48,7 @@ function Login() {
           />
         </div>
 
-        <div>
+        <div className="input-container">
           <label>Contraseña</label>
 
           <input
@@ -56,7 +59,7 @@ function Login() {
           />
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} className="btn-upload">
           {loading ? "Iniciando sesión..." : "Iniciar sesión"}
         </button>
       </form>

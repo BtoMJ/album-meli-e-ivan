@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../conexion/supabase";
 import Login from "../Login/Login";
+import QR from "../QR/QR";
+import "./Admin.css";
 
 function Admin() {
   const [session, setSession] = useState(undefined);
@@ -141,8 +143,7 @@ function Admin() {
           console.log("FOTO:", foto);
 
           if (errorFile) {
-            console.error("ERROR AL CREAR URL:", errorFile);
-            // console.error(errorFile);
+            console.error(errorFile);
             continue;
           }
           console.log("URL GENERADA:", file.signedUrl);
@@ -167,17 +168,37 @@ function Admin() {
   }
 
   return (
-    <main>
-      <h1>Galería privada 💍</h1>
-      <p>¡Bienvenidos! Ya iniciaron sesión correctamente.</p>
+    <main className="admin-container center">
+      <nav className="nav-container">
+        <h4>Galería Privada </h4>
+        <button
+          className="btn-upload-2"
+          onClick={() => supabase.auth.signOut()}
+        >
+          Cerrar sesión
+        </button>
+      </nav>
 
-      <button onClick={() => supabase.auth.signOut()}>Cerrar sesión</button>
+      <section className="welcome">
+        <p className="subtitle">¡Bienvenidos! </p>
+        <p className="subtitle">
+          Aquí pueden aprobar cada foto que suben sus invitados antes de
+          aparecer en el album público.
+        </p>
+      </section>
 
       {loading && <p>Cargando fotografías...</p>}
 
       {error && <p>{error}</p>}
 
       <section>
+        {photos.length < 1 ? (
+          <p className="no-photos-admin">
+            Por el momento, no hay fotos que aprobar
+          </p>
+        ) : (
+          ""
+        )}
         {photos.map((foto) => (
           <article
             key={foto.id}
@@ -200,25 +221,53 @@ function Admin() {
             ) : (
               <p>Preparando imagen...</p>
             )}
-            <p>{foto.name_original}</p>
-            <p>Estado: {foto.state}</p>
+            {/* <p>{foto.name_original}</p> */}
+            <div className="data-photo-admin">
+              <p className="subtitle">
+                <span>Estado:</span> Pendiente
+                {/* <span>Estado:</span> {foto.state} */}
+              </p>
+              <p className="subtitle">
+                <span>Subido por:</span> {foto.guest}
+              </p>
+              <p className="subtitle">
+                <span>Nota: </span> {foto.note}
+              </p>
+            </div>
 
             <div>
-              <button onClick={() => updateState(foto.id, "approved")}>
+              <button
+                className="btn-upload-2"
+                onClick={() => updateState(foto.id, "approved")}
+              >
                 Aprobar
               </button>
 
-              <button onClick={() => updateState(foto.id, "rejected")}>
+              <button
+                className="btn-upload-2"
+                onClick={() => updateState(foto.id, "rejected")}
+              >
                 Rechazar
               </button>
 
-              <button onClick={() => downloadPhoto(foto)}>Descargar</button>
+              <button
+                className="btn-upload-2"
+                onClick={() => downloadPhoto(foto)}
+              >
+                Descargar
+              </button>
 
-              <button onClick={() => deletePhoto(foto)}>Eliminar foto</button>
+              <button
+                className="btn-upload-2"
+                onClick={() => deletePhoto(foto)}
+              >
+                Eliminar
+              </button>
             </div>
           </article>
         ))}
       </section>
+      <QR />
     </main>
   );
 }

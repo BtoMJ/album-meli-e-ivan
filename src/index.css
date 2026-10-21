@@ -5,62 +5,94 @@
 }
 
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --principal: #666f44;
+  --bg: #bac09580;
+  --bg-light: #fbfde8;
+  --light: #fff;
+  --accent-bg: #ffc402;
+  --text-h: #967e48;
+  --text: #6b6b6b;
 
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --cursive: "Parisienne", cursive;
+  --serif: "Bodoni Moda", serif;
+  --sans-serif: "Montserrat", sans-serif;
+  --alternative: "Tangerine", cursive;
 }
 
 #root {
-  width: 100dvw;
-  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image:
+    linear-gradient(180deg, #fbfde850 0%, #fbfde850 100%),
+    url("./assets/paper-texture.png");
+  background-repeat: repeat;
+  background-size: 100%;
+  padding-bottom: 2rem;
+  overflow-x: hidden;
 
   @media (320px <= width <= 480px) {
     width: 100svw;
-    height: 100svh;
+    min-height: 100svh;
   }
 
   @media (481px <= width <= 767px) {
     width: 100svw;
-    height: 100svh;
+    min-height: 100svh;
   }
 
   @media (768px <= width <= 1023px) {
     width: 100lvw;
-    height: 100lvh;
+    min-height: 100lvh;
   }
 
   @media (1024px <= width <= 1199px) {
     width: 100lvw;
-    height: 100lvh;
+    min-height: 100lvh;
   }
 
   @media (1200px <= width <= 1919px) {
     width: 100dvw;
-    height: 100dvh;
+    min-height: 100dvh;
   }
 
   @media (1920px <= width <= 2600px) {
     width: 100dvw;
-    height: 100dvh;
+    min-height: 100dvh;
   }
 
   @media (2601px <= width) {
     width: 100dvw;
-    height: 100dvh;
+    min-height: 100dvh;
+  }
+}
+
+.subtitle {
+  width: 100%;
+  font-family: var(--sans-serif);
+  font-weight: 500;
+  color: var(--text-h);
+  text-align: center;
+
+  @media (320px <= width <= 480px) {
+    font-size: 1rem;
+  }
+
+  @media (481px <= width <= 767px) {
+  }
+
+  @media (768px <= width <= 1023px) {
+  }
+
+  @media (1024px <= width <= 1199px) {
+  }
+
+  @media (1200px <= width <= 1919px) {
+  }
+
+  @media (1920px <= width <= 2600px) {
+  }
+
+  @media (2601px <= width) {
   }
 }

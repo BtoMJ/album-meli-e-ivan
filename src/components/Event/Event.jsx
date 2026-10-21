@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { supabase } from "../../conexion/supabase";
+import portrait from "../../assets/foto-7-letter.png";
 import Upload from "../Upload/Upload";
 import PublicGallery from "../PublicGallery/PublicGallery";
-
-import "./Event.css";
 
 import "./Event.css";
 
@@ -46,16 +45,26 @@ function Event() {
   }
 
   return (
-    <section className="event-container ">
-      <h1>{event.name}</h1>
+    <section className="event-container center">
+      <div className="icon-app center">
+        <img src={portrait} />
+      </div>
 
-      <p>Fecha: {event.date}</p>
+      <div className="data-event center">
+        <h1>{event.name}</h1>
+        <p className="date"> - {event.date} -</p>
+        <p className="sub-title">
+          Se parte de los recuerdos memorables de {event.type}. <br />
+        </p>
+      </div>
 
-      <p>Comparte tus fotografías con los novios</p>
-
-      <Upload evento={event} />
-
-      <PublicGallery evento={event} />
+      <div className="upload-container center">
+        <Upload evento={event} />
+      </div>
+      <div className="gallery-container">
+        <h2>Fotografías Añadidas</h2>
+        <PublicGallery evento={event} />
+      </div>
     </section>
   );
 }
