@@ -44,7 +44,8 @@ function QR() {
   if (error) return <p>{error}</p>;
   if (!event) return null;
 
-  const urlAlbum = `https://album-meli-e-ivan.vercel.app/${event.slug_text}`;
+  // const urlAlbum = `https://album-meli-e-ivan.vercel.app/${event.slug_text}`;
+  const urlAlbum = `https://album-meli-e-ivan.vercel.app`;
 
   return (
     <section className="qr-container">
