@@ -1,12 +1,12 @@
 .login-album-container {
   width: 100dvw;
-  height: 100dvh;
+  max-height: 100dvh;
   font-family: var(--sans-serif);
 
   img {
     width: 50%;
-    margin-top: -5rem;
     margin-bottom: 1rem;
+    position: relative;
   }
 
   h1 {

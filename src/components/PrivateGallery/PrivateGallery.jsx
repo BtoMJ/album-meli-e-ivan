@@ -32,7 +32,7 @@ function PrivateGalery({ evento }) {
   }, [evento.id]);
 
   if (loading) {
-    return <p>Cargando fotografías...</p>;
+    return <p className="subtitle">Cargando fotografías...</p>;
   }
 
   if (error) {
@@ -40,7 +40,7 @@ function PrivateGalery({ evento }) {
   }
 
   if (photos.length === 0) {
-    return <p>No hay fotografías pendientes.</p>;
+    return <p className="subtitle">No hay fotografías pendientes.</p>;
   }
 
   return (

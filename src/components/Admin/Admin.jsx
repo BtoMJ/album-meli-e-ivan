@@ -7,6 +7,7 @@ import "./Admin.css";
 function Admin() {
   const [session, setSession] = useState(undefined);
   const [photos, setPhotos] = useState([]);
+  const [approvedPhotos, setApprovedPhotos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [images, setImages] = useState({});
@@ -90,6 +91,10 @@ function Admin() {
       updatePhotos.filter((item) => item.id !== foto.id),
     );
 
+    setApprovedPhotos((updatePhotos) =>
+      updatePhotos.filter((item) => item.id !== foto.id),
+    );
+
     setImages((currentPhotos) => {
       const newPhotos = { ...currentPhotos };
       delete newPhotos[foto.id];
@@ -127,15 +132,24 @@ function Admin() {
         .eq("state", "pending")
         .order("created_at", { ascending: false });
 
+      const { data: approvedData, error: approvedError } = await supabase
+        .from("fotos")
+        .select("*")
+        .eq("state", "approved")
+        .order("created_at", { ascending: false });
+
       if (error) {
         console.error(error);
         setError("No se pudieron cargar las fotografías.");
       } else {
         setPhotos(data);
+        setApprovedPhotos(approvedData || []);
 
         const links = {};
 
-        for (const foto of data) {
+        const allPhotos = [...(data || []), ...(approvedData || [])];
+
+        for (const foto of allPhotos) {
           const { data: file, error: errorFile } = await supabase.storage
             .from("photos")
             .createSignedUrl(foto.storage_path, 3600);
@@ -160,7 +174,7 @@ function Admin() {
   }, [session]);
 
   if (session === undefined) {
-    return <p>Comprobando acceso...</p>;
+    return <p className="subtitle">Comprobando acceso...</p>;
   }
 
   if (!session) {
@@ -193,9 +207,11 @@ function Admin() {
 
       <section>
         {photos.length < 1 ? (
-          <p className="no-photos-admin">
-            Por el momento, no hay fotos que aprobar
-          </p>
+          <div className="data-photo-admin">
+            <p className="no-photos-admin">
+              Por el momento, no hay fotos que aprobar
+            </p>
+          </div>
         ) : (
           ""
         )}
@@ -219,7 +235,7 @@ function Admin() {
                 }}
               />
             ) : (
-              <p>Preparando imagen...</p>
+              <p className="subtitle">Preparando imagen...</p>
             )}
             {/* <p>{foto.name_original}</p> */}
             <div className="data-photo-admin">
@@ -267,6 +283,56 @@ function Admin() {
           </article>
         ))}
       </section>
+
+      <section style={{ marginTop: "50px" }}>
+        <h2>Álbum aprobado</h2>
+
+        {approvedPhotos.length === 0 ? (
+          <p className="subtitle">No hay fotografías aprobadas.</p>
+        ) : (
+          approvedPhotos.map((foto) => (
+            <div className="photo-list" key={foto.id}>
+              <div className="img-container center">
+                {images[foto.id] ? (
+                  <img
+                    src={images[foto.id]}
+                    alt={foto.name_original || "Foto del evento"}
+                    className="photo-item"
+                  />
+                ) : (
+                  <p className="subtitle">Preparando imagen...</p>
+                )}
+              </div>
+              <div className="data-list">
+                <p className="data-title">Subido por:</p>
+                <p className="title">{foto.guest}</p>
+                <p className="data-title">Nota:</p>
+                <p className="title">{foto.note}</p>
+
+                <div className="btns-photo-admin-approved">
+                  <button
+                    className="btn-upload-2 "
+                    onClick={() => downloadPhoto(foto)}
+                  >
+                    Descargar
+                  </button>
+
+                  <button
+                    className="btn-upload-2 "
+                    onClick={() => deletePhoto(foto)}
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+
+              {/* <p>{foto.name_original}</p> */}
+              {/* <p>Estado: {foto.state}</p> */}
+            </div>
+          ))
+        )}
+      </section>
+
       <QR />
     </main>
   );

@@ -70,7 +70,7 @@ function PublicGallery({ evento }) {
   }, [photoSelected]);
 
   if (loading) {
-    return <p>Cargando galería...</p>;
+    return <p className="subtitle">Cargando galería...</p>;
   }
 
   if (error) {

@@ -36,7 +36,7 @@ function QR() {
 
     const enlace = document.createElement("a");
     enlace.href = canvas.toDataURL("image/png");
-    enlace.download = `QR-${event.slug}.png`;
+    enlace.download = `QR-${event.slug_text}.png`;
     enlace.click();
   };
 

@@ -19,7 +19,7 @@
 
 .btn-upload-2 {
   border: none;
-  padding: 0.5rem;
+  padding: 0.2rem 0.5rem;
   background: linear-gradient(-45deg, #a9b679 0%, #666f44 90%);
   color: var(--accent-bg);
   border-radius: 50px;

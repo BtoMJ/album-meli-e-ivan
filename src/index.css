@@ -23,6 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-image:
     linear-gradient(180deg, #fbfde850 0%, #fbfde850 100%),
     url("./assets/paper-texture.png");
