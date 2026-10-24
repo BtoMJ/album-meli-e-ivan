@@ -2,11 +2,43 @@
   width: 100dvw;
   max-height: 100dvh;
   font-family: var(--sans-serif);
+  overflow: hidden;
 
   img {
-    width: 50%;
     margin-bottom: 1rem;
     position: relative;
+
+    @media (320px <= width <= 480px) {
+      width: 50%;
+    }
+
+    @media (481px <= width <= 767px) {
+      width: 50%;
+    }
+
+    @media (768px <= width <= 1023px) {
+      width: 50%;
+    }
+
+    @media (1024px <= width <= 1199px) {
+      width: 30%;
+    }
+
+    @media (1200px <= width <= 1439px) {
+      width: 20%;
+    }
+
+    @media (1440px <= width <= 1919px) {
+      width: 25%;
+    }
+
+    @media (1920px <= width <= 2600px) {
+      width: 20%;
+    }
+
+    @media (2601px <= width) {
+      width: 20%;
+    }
   }
 
   h1 {
@@ -19,32 +51,120 @@
   }
 
   .form-album-login {
-    width: 70%;
     height: 30%;
+
+    @media (320px <= width <= 480px) {
+      width: 70%;
+    }
+
+    @media (481px <= width <= 767px) {
+      width: 70%;
+    }
+
+    @media (768px <= width <= 1023px) {
+      width: 50%;
+    }
+
+    @media (1024px <= width <= 1199px) {
+      width: 40%;
+    }
+
+    @media (1200px <= width <= 1439px) {
+      width: 30%;
+    }
+
+    @media (1440px <= width <= 1919px) {
+      width: 30%;
+    }
+
+    @media (1920px <= width <= 2600px) {
+      width: 25%;
+    }
+
+    @media (2601px <= width) {
+      width: 15%;
+    }
 
     .input-container {
       width: 100%;
       display: flex;
       flex-direction: column;
 
+      @media (320px <= width <= 480px) {
+        margin: 0.5rem 0;
+      }
+
+      @media (481px <= width <= 767px) {
+        margin: 0.7rem 0;
+      }
+
+      @media (768px <= width <= 1023px) {
+        margin: 1rem 0;
+      }
+
+      @media (1024px <= width <= 1199px) {
+        margin: 1.5rem 0;
+      }
+
+      @media (1200px <= width <= 1919px) {
+        margin: 0.5rem 0;
+      }
+
+      @media (1920px <= width <= 2600px) {
+        margin: 1.5rem 0;
+      }
+
+      @media (2601px <= width) {
+        margin: 2.5rem 0;
+      }
+
       label {
         width: 100%;
         text-align: left;
         font-family: var(--cursive);
         color: var(--text-h);
-        font-size: 1.5rem;
+
+        @media (320px <= width <= 480px) {
+          font-size: 1.5rem;
+        }
+
+        @media (481px <= width <= 767px) {
+          font-size: 1.5rem;
+        }
+
+        @media (768px <= width <= 1023px) {
+          font-size: 2rem;
+        }
+
+        @media (1024px <= width <= 1199px) {
+          font-size: 2.2rem;
+        }
+
+        @media (1200px <= width <= 1439px) {
+          font-size: 1.5rem;
+        }
+
+        @media (1440px <= width <= 1919px) {
+          font-size: 1.5rem;
+        }
+
+        @media (1920px <= width <= 2600px) {
+          font-size: 2rem;
+        }
+
+        @media (2601px <= width) {
+          font-size: 3rem;
+        }
       }
     }
   }
 
   .btn-upload {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 
   input {
     width: 100%;
-    padding: 0.7rem;
-    margin: 0.5rem 0;
     border: none;
     font-family: var(--sans-serif);
     outline: none;
@@ -52,6 +172,16 @@
 
     &:focus {
       box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (320px <= width <= 2600px) {
+      margin: 0.5rem 0;
+      padding: 0.7rem;
+    }
+
+    @media (2601px <= width) {
+      margin: 1rem 0;
+      padding: 2rem;
     }
   }
 }

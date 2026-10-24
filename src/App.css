@@ -8,24 +8,96 @@
 
 .btn-upload {
   border: none;
-  padding: 0.5rem 1rem;
   background: linear-gradient(-45deg, #a9b679 0%, #666f44 90%);
   color: var(--accent-bg);
   border-radius: 50px;
   font-family: var(--serif);
   margin-top: 1rem;
-  font-size: 1rem;
+
+  @media (320px <= width <= 480px) {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  @media (481px <= width <= 767px) {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  @media (768px <= width <= 1023px) {
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+  }
+
+  @media (1024px <= width <= 1199px) {
+    padding: 1rem 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  @media (1200px <= width <= 1919px) {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  @media (1920px <= width <= 2600px) {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  @media (2601px <= width) {
+    padding: 1rem 1.5rem;
+    font-size: 2rem;
+  }
 }
 
 .btn-upload-2 {
   border: none;
-  padding: 0.2rem 0.5rem;
   background: linear-gradient(-45deg, #a9b679 0%, #666f44 90%);
   color: var(--accent-bg);
   border-radius: 50px;
   font-family: var(--serif);
-  margin: 1rem 0.3rem;
-  font-size: 0.85rem;
+
+  @media (320px <= width <= 480px) {
+    padding: 0.2rem 0.5rem;
+    margin: 1rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  @media (481px <= width <= 767px) {
+    padding: 0.2rem 0.5rem;
+    margin: 1rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  @media (768px <= width <= 1023px) {
+    padding: 0.2rem 0.5rem;
+    margin: 1rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  @media (1024px <= width <= 1199px) {
+    padding: 0.2rem 0.5rem;
+    margin: 1rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  @media (1200px <= width <= 1919px) {
+    padding: 0.2rem 0.5rem;
+    margin: 1rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  @media (1920px <= width <= 2600px) {
+    padding: 0.2rem 0.5rem;
+    margin: 1rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  @media (2601px <= width) {
+    padding: 0.2rem 0.5rem;
+    margin: 1rem 0.3rem;
+    font-size: 0.85rem;
+  }
 }
 
 .invisible-input {
@@ -46,51 +118,85 @@ h1 {
   }
 
   @media (481px <= width <= 767px) {
+    font-size: 4rem;
+    margin-bottom: -0.5rem;
   }
 
   @media (768px <= width <= 1023px) {
+    font-size: 5rem;
+    margin-bottom: -0.5rem;
   }
 
   @media (1024px <= width <= 1199px) {
+    font-size: 6rem;
+    margin-bottom: -0.5rem;
   }
 
-  @media (1200px <= width <= 1919px) {
+  @media (1200px <= width <= 1439px) {
+    font-size: 5rem;
+    margin-bottom: -0.5rem;
+  }
+
+  @media (1440px <= width <= 1919px) {
+    font-size: 5rem;
+    margin-bottom: -0.5rem;
   }
 
   @media (1920px <= width <= 2600px) {
+    font-size: 5rem;
+    margin-bottom: -0.5rem;
   }
 
   @media (2601px <= width) {
+    font-size: 10rem;
   }
 }
 
 h2 {
-  width: 100%;
   color: var(--text-h);
   text-align: center;
   font-family: var(--alternative);
-  margin-bottom: 0.5rem;
 
   @media (320px <= width <= 480px) {
+    width: 100%;
     font-size: 2.5rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (481px <= width <= 767px) {
+    width: 100%;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (768px <= width <= 1023px) {
+    width: 100%;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (1024px <= width <= 1199px) {
+    width: 100%;
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (1200px <= width <= 1919px) {
+    width: 100%;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (1920px <= width <= 2600px) {
+    width: 100%;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (2601px <= width) {
+    width: 100%;
+    font-size: 5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -105,12 +211,15 @@ h3 {
   }
 
   @media (481px <= width <= 767px) {
+    font-size: 1rem;
   }
 
   @media (768px <= width <= 1023px) {
+    font-size: 1rem;
   }
 
   @media (1024px <= width <= 1199px) {
+    font-size: 1.5rem;
   }
 
   @media (1200px <= width <= 1919px) {
@@ -132,26 +241,31 @@ h4 {
   }
 
   @media (481px <= width <= 767px) {
+    font-size: 2.5rem;
   }
 
   @media (768px <= width <= 1023px) {
+    font-size: 2.5rem;
   }
 
   @media (1024px <= width <= 1199px) {
+    font-size: 2.5rem;
   }
 
   @media (1200px <= width <= 1919px) {
+    font-size: 2.5rem;
   }
 
   @media (1920px <= width <= 2600px) {
+    font-size: 2.5rem;
   }
 
   @media (2601px <= width) {
+    font-size: 2.5rem;
   }
 }
 
 .sub-title {
-  width: 100%;
   font-family: var(--sans-serif);
   font-weight: 500;
   color: var(--text);
@@ -160,24 +274,42 @@ h4 {
   text-overflow: ellipsis;
 
   @media (320px <= width <= 480px) {
+    width: 100%;
     font-size: 1rem;
   }
 
   @media (481px <= width <= 767px) {
+    width: 100%;
+    font-size: 1rem;
   }
 
   @media (768px <= width <= 1023px) {
+    width: 70%;
+    font-size: 1.5rem;
   }
 
   @media (1024px <= width <= 1199px) {
+    width: 70%;
+    font-size: 1.5rem;
   }
 
-  @media (1200px <= width <= 1919px) {
+  @media (1200px <= width <= 1439px) {
+    width: 40%;
+    font-size: 1.3rem;
+  }
+
+  @media (1440px <= width <= 1919px) {
+    width: 35%;
+    font-size: 1.3rem;
   }
 
   @media (1920px <= width <= 2600px) {
+    width: 30%;
+    font-size: 1.5rem;
   }
 
   @media (2601px <= width) {
+    width: 30%;
+    font-size: 2.5rem;
   }
 }

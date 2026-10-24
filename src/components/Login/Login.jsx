@@ -34,7 +34,7 @@ function Login() {
       <img src={imgWedding} alt="foto de portada" />
       <h1>Área privada</h1>
 
-      <p>Acceso exclusivo para los novios</p>
+      <p className="sub-title">Acceso exclusivo para los novios</p>
 
       <form onSubmit={startSession} className="form-album-login">
         <div className="input-container">

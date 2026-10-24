@@ -41,7 +41,7 @@ function Event() {
   }
 
   if (error || !event) {
-    return <p>Evento no encontrado.</p>;
+    return <p className="sub-title">Evento no encontrado.</p>;
   }
 
   return (

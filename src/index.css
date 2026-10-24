@@ -19,6 +19,10 @@
   --alternative: "Tangerine", cursive;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -48,8 +52,8 @@
   }
 
   @media (1024px <= width <= 1199px) {
-    width: 100lvw;
-    min-height: 100lvh;
+    width: 100dvw;
+    min-height: 100dvh;
   }
 
   @media (1200px <= width <= 1919px) {

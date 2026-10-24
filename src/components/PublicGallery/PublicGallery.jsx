@@ -3,11 +3,70 @@ import { supabase } from "../../conexion/supabase";
 
 import "./PublicGallery.css";
 
+const getVisitorId = () => {
+  let visitorId = localStorage.getItem("album_visitor_id");
+
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+    localStorage.setItem("album_visitor_id", visitorId);
+  }
+
+  return visitorId;
+};
+
 function PublicGallery({ evento }) {
   const [photos, setPhotos] = useState([]);
   const [photoSelected, setPhotoSelected] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [likes, setLikes] = useState({});
+
+  const toggleLike = async (fotoId) => {
+    const visitorId = getVisitorId();
+
+    const currentLike = likes[fotoId];
+
+    if (currentLike?.liked) {
+      const { error } = await supabase
+        .from("foto_likes")
+        .delete()
+        .eq("foto_id", fotoId)
+        .eq("visitor_id", visitorId);
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      setLikes((currentLikes) => ({
+        ...currentLikes,
+        [fotoId]: {
+          count: Math.max((currentLikes[fotoId]?.count || 1) - 1, 0),
+          liked: false,
+        },
+      }));
+
+      return;
+    }
+
+    const { error } = await supabase.from("foto_likes").insert({
+      foto_id: fotoId,
+      visitor_id: visitorId,
+    });
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    setLikes((currentLikes) => ({
+      ...currentLikes,
+      [fotoId]: {
+        count: (currentLikes[fotoId]?.count || 0) + 1,
+        liked: true,
+      },
+    }));
+  };
 
   useEffect(() => {
     const getPhotos = async () => {
@@ -47,6 +106,38 @@ function PublicGallery({ evento }) {
       }
 
       setPhotos(photosWithUrl);
+
+      const { data: likesData, error: likesError } = await supabase
+        .from("foto_likes")
+        .select("foto_id, visitor_id")
+        .in(
+          "foto_id",
+          photosWithUrl.map((photo) => photo.id),
+        );
+
+      if (likesError) {
+        console.error(likesError);
+      } else {
+        const likesMap = {};
+
+        for (const like of likesData) {
+          if (!likesMap[like.foto_id]) {
+            likesMap[like.foto_id] = {
+              count: 0,
+              liked: false,
+            };
+          }
+
+          likesMap[like.foto_id].count++;
+
+          if (like.visitor_id === getVisitorId()) {
+            likesMap[like.foto_id].liked = true;
+          }
+        }
+
+        setLikes(likesMap);
+      }
+
       setLoading(false);
     };
 

@@ -201,7 +201,7 @@ function Admin() {
         </p>
       </section>
 
-      {loading && <p>Cargando fotografías...</p>}
+      {loading && <p className="sub-title">Cargando fotografías...</p>}
 
       {error && <p>{error}</p>}
 
@@ -216,71 +216,65 @@ function Admin() {
           ""
         )}
         {photos.map((foto) => (
-          <article
-            key={foto.id}
-            style={{
-              marginBottom: "24px",
-              maxWidth: "350px",
-            }}
-          >
-            {images[foto.id] ? (
-              <img
-                src={images[foto.id]}
-                alt={foto.name_original || "Foto del evento"}
-                style={{
-                  width: "100%",
-                  height: "250px",
-                  objectFit: "cover",
-                  borderRadius: "12px",
-                }}
-              />
-            ) : (
-              <p className="subtitle">Preparando imagen...</p>
-            )}
-            {/* <p>{foto.name_original}</p> */}
-            <div className="data-photo-admin">
-              <p className="subtitle">
-                <span>Estado:</span> Pendiente
-                {/* <span>Estado:</span> {foto.state} */}
-              </p>
-              <p className="subtitle">
-                <span>Subido por:</span> {foto.guest}
-              </p>
-              <p className="subtitle">
-                <span>Nota: </span> {foto.note}
-              </p>
-            </div>
+          <section className="pending-items-container">
+            <article key={foto.id} className="pending-item">
+              {images[foto.id] ? (
+                <img
+                  src={images[foto.id]}
+                  alt={foto.name_original || "Foto del evento"}
+                  style={{
+                    width: "100%",
+                    height: "250px",
+                    objectFit: "cover",
+                    borderRadius: "12px",
+                  }}
+                />
+              ) : (
+                <p className="sub-title">Preparando imagen...</p>
+              )}
+              <div className="data-photo-admin">
+                <p className="subtitle">
+                  <span>Estado:</span> Pendiente
+                </p>
+                <p className="subtitle">
+                  <span>Subido por:</span> {foto.guest}
+                </p>
+                <p className="subtitle">
+                  <span>Nota: </span> {foto.note}
+                </p>
+              </div>
 
-            <div>
-              <button
-                className="btn-upload-2"
-                onClick={() => updateState(foto.id, "approved")}
-              >
-                Aprobar
-              </button>
+              <div>
+                <button
+                  className="btn-upload-2"
+                  onClick={() => updateState(foto.id, "approved")}
+                >
+                  Aprobar
+                </button>
 
-              <button
-                className="btn-upload-2"
-                onClick={() => updateState(foto.id, "rejected")}
-              >
-                Rechazar
-              </button>
+                <button
+                  className="btn-upload-2"
+                  onClick={() => updateState(foto.id, "rejected")}
+                >
+                  Rechazar
+                </button>
 
-              <button
-                className="btn-upload-2"
-                onClick={() => downloadPhoto(foto)}
-              >
-                Descargar
-              </button>
+                <button
+                  className="btn-upload-2"
+                  onClick={() => downloadPhoto(foto)}
+                >
+                  Descargar
+                </button>
 
-              <button
-                className="btn-upload-2"
-                onClick={() => deletePhoto(foto)}
-              >
-                Eliminar
-              </button>
-            </div>
-          </article>
+                <button
+                  className="btn-upload-2"
+                  onClick={() => deletePhoto(foto)}
+                >
+                  Eliminar
+                </button>
+              </div>
+            </article>
+          </section>
         ))}
       </section>
 
@@ -290,46 +284,45 @@ function Admin() {
         {approvedPhotos.length === 0 ? (
           <p className="subtitle">No hay fotografías aprobadas.</p>
         ) : (
-          approvedPhotos.map((foto) => (
-            <div className="photo-list" key={foto.id}>
-              <div className="img-container center">
-                {images[foto.id] ? (
-                  <img
-                    src={images[foto.id]}
-                    alt={foto.name_original || "Foto del evento"}
-                    className="photo-item"
-                  />
-                ) : (
-                  <p className="subtitle">Preparando imagen...</p>
-                )}
-              </div>
-              <div className="data-list">
-                <p className="data-title">Subido por:</p>
-                <p className="title">{foto.guest}</p>
-                <p className="data-title">Nota:</p>
-                <p className="title">{foto.note}</p>
+          <div className="approved-item-album">
+            {approvedPhotos.map((foto) => (
+              <div className="photo-list" key={foto.id}>
+                <div className="img-container center">
+                  {images[foto.id] ? (
+                    <img
+                      src={images[foto.id]}
+                      alt={foto.name_original || "Foto del evento"}
+                      className="photo-item"
+                    />
+                  ) : (
+                    <p className="subtitle">Preparando imagen...</p>
+                  )}
+                </div>
+                <div className="data-list">
+                  <p className="data-title">Subido por:</p>
+                  <p className="title">{foto.guest}</p>
+                  <p className="data-title">Nota:</p>
+                  <p className="title">{foto.note}</p>
 
-                <div className="btns-photo-admin-approved">
-                  <button
-                    className="btn-upload-2 "
-                    onClick={() => downloadPhoto(foto)}
-                  >
-                    Descargar
-                  </button>
+                  <div className="btns-photo-admin-approved">
+                    <button
+                      className="btn-upload-2 "
+                      onClick={() => downloadPhoto(foto)}
+                    >
+                      Descargar
+                    </button>
 
-                  <button
-                    className="btn-upload-2 "
-                    onClick={() => deletePhoto(foto)}
-                  >
-                    Eliminar
-                  </button>
+                    <button
+                      className="btn-upload-2 "
+                      onClick={() => deletePhoto(foto)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
                 </div>
               </div>
-
-              {/* <p>{foto.name_original}</p> */}
-              {/* <p>Estado: {foto.state}</p> */}
-            </div>
-          ))
+            ))}
+          </div>
         )}
       </section>
 

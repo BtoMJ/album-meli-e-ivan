@@ -118,7 +118,7 @@ function Upload({ evento }) {
                   placeholder="Algo que desees decir..."
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  maxLength={200}
+                  maxLength={150}
                   rows={3}
                 ></textarea>
                 <button
@@ -134,55 +134,9 @@ function Upload({ evento }) {
         </div>
       )}
 
-      {/* {photos.length > 0 && (
-        <div>
-          <p>{photos[0].name}</p>
-
-          <button onClick={uploadPhoto} disabled={uploading}>
-            {uploading ? "Subiendo..." : "Subir foto"}
-          </button>
-        </div>
-      )} */}
-
       {msj && <p className="upload-success">{msj}</p>}
     </section>
   );
 }
 
 export default Upload;
-
-// import { useState } from "react";
-
-// function Upload() {
-//   const [photos, setPhotos] = useState([]);
-
-//   const selectPhotos = (event) => {
-//     const files = Array.from(event.target.files);
-
-//     setPhotos(files);
-//   };
-
-//   return (
-//     <section>
-//       <h2>Comparte tus fotos 📸</h2>
-
-//       <p>Selecciona las fotografías que quieras compartir con los novios.</p>
-
-//       <input type="file" accept="image/*" multiple onChange={selectPhotos} />
-
-//       {photos.length > 0 && (
-//         <div>
-//           <h3>Fotos seleccionadas: {photos.length}</h3>
-
-//           {photos.map((photo, index) => (
-//             <div key={index}>
-//               <p>{photo.name}</p>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </section>
-//   );
-// }
-
-// export default Upload;
