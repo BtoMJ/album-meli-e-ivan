@@ -217,11 +217,27 @@ function PublicGallery({ evento }) {
             onClick={(event) => event.stopPropagation()}
             className="info-photo-max center"
           >
-            <img
-              src={photoSelected.url}
-              alt="Fotografía ampliada de la boda"
-              className="photo-modal-max"
-            />
+            <div className="photo-modal-max">
+              <img
+                src={photoSelected.url}
+                alt="Fotografía ampliada de la boda"
+                className="img-modal-max"
+              />
+              <div className="like-container center">
+                <button
+                  type="button"
+                  onClick={() => toggleLike(photoSelected.id)}
+                  aria-label={
+                    likes[photoSelected.id]?.liked ? "Quitar like" : "Dar like"
+                  }
+                >
+                  {likes[photoSelected.id]?.liked ? "❤️" : "🤍"}
+                </button>
+              </div>
+              <span className="likes-count">
+                {likes[photoSelected.id]?.count || 0}
+              </span>
+            </div>
             <div className="data-img center">
               {photoSelected.guest && (
                 <p className="upload-for">
